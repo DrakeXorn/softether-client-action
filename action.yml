@@ -1,11 +1,12 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: SoftEther VPN Client Action
+description: A GitHub Action that runs the SoftEther VPN Client on a self-hosted runner. This action is designed to be used in workflows that require a VPN connection to access resources that are not publicly available.
+author:
+  name: Christophe 'DrakeXorn' Bernard
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
-  color: red
+  icon: server
+  color: blue
 
 # Define your inputs here.
 inputs:
