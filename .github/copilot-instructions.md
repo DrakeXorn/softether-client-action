@@ -1,12 +1,12 @@
 # Copilot Instructions
 
-This GitHub Action is written in JavaScript and transpiled to a single file.
-Both the JavaScript sources and the **generated** JavaScript code are contained
-in this repository. The JavaScript sources are contained in the `src` directory
+This GitHub Action is written in TypeScript and transpiled to a single file.
+Both the TypeScript sources and the **generated** JavaScript code are contained
+in this repository. The TypeScript sources are contained in the `src` directory
 and the code invoked by GitHub Actions is contained in the `dist` directory. A
-GitHub Actions workflow checks that the JavaScript code in `dist` is up-to-date.
+GitHub Actions workflow checks that the code in `dist` is up-to-date.
 Therefore, you should not review any changes to the contents of the `dist`
-folder and it is expected that the JavaScript code in `dist` closely mirrors the
+folder, and it is expected that the JavaScript code in `dist` closely mirrors the
 code it is generated from.
 
 ## Repository Structure
@@ -42,7 +42,7 @@ code it is generated from.
 Install dependencies by running:
 
 ```bash
-npm install
+yarn
 ```
 
 ## Testing
@@ -50,7 +50,7 @@ npm install
 Ensure all unit tests pass by running:
 
 ```bash
-npm run test
+yarn test
 ```
 
 Unit tests should exist in the `__tests__` directory. They are powered by
@@ -62,7 +62,7 @@ Any time files in the `src` directory are changed, you should run the following
 command to bundle the JavaScript code into the `dist` directory:
 
 ```bash
-npm run bundle
+yarn bundle
 ```
 
 ## General Coding Guidelines
@@ -77,7 +77,7 @@ npm run bundle
 - Keep functions focused and manageable
 - Use descriptive variable and function names that clearly convey their purpose
 - Use JSDoc comments to document functions, classes, and complex logic
-- After doing any refactoring, ensure to run `npm run test` to ensure that all
+- After doing any refactoring, ensure to run `yarn test` to ensure that all
   tests still pass and coverage requirements are met
 - When suggesting code changes, always opt for the most maintainable approach.
   Try your best to keep the code clean and follow "Don't Repeat Yourself" (DRY)

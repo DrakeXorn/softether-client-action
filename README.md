@@ -50,19 +50,19 @@ need to perform some initial setup steps before you can develop your action.
 1. :hammer_and_wrench: Install the dependencies
 
    ```bash
-   npm install
+   yarn install
    ```
 
 1. :building_construction: Package the JavaScript for distribution
 
    ```bash
-   npm run bundle
+   yarn bundle
    ```
 
 1. :white_check_mark: Run the tests
 
    ```bash
-   $ npm test
+   $ yarn test
 
    PASS  ./index.test.js
      ✓ throws invalid number (3ms)
