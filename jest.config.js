@@ -8,21 +8,21 @@ const jestConfig = {
   coverageDirectory: './coverage',
   coveragePathIgnorePatterns: ['/node_modules/', '/dist/'],
   coverageReporters: ['json-summary', 'text', 'lcov'],
-  // Uncomment the below lines if you would like to enforce a coverage threshold
-  // for your action. This will fail the build if the coverage is below the
-  // specified thresholds.
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 100,
-  //     functions: 100,
-  //     lines: 100,
-  //     statements: 100
-  //   }
-  // },
-  moduleFileExtensions: ['js'],
+  // TypeScript via swc: it has no dependency on the `typescript` package, so it
+  // works regardless of the TS compiler version.
+  transform: {
+    '^.+\\.ts$': [
+      '@swc/jest',
+      { jsc: { target: 'es2024', parser: { syntax: 'typescript' } } }
+    ]
+  },
+  extensionsToTreatAsEsm: ['.ts'],
+  // Sources import `./x.js` (nodenext style); resolve those to the `.ts` files.
+  moduleNameMapper: { '^(\\.{1,2}/.*)\\.js$': '$1' },
+  moduleFileExtensions: ['ts', 'js'],
   reporters: ['default'],
   testEnvironment: 'node',
-  testMatch: ['**/*.test.js'],
+  testMatch: ['**/*.test.ts'],
   testPathIgnorePatterns: ['/dist/', '/node_modules/'],
   verbose: true
 }

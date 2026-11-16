@@ -1,25 +1,58 @@
 name: SoftEther VPN Client Action
-description: A GitHub Action that runs the SoftEther VPN Client on a self-hosted runner. This action is designed to be used in workflows that require a VPN connection to access resources that are not publicly available.
-author:
-  name: Christophe 'DrakeXorn' Bernard
+description: Connects a Linux runner to a SoftEther VPN server for the rest of the job, and disconnects in a post step.
+author: Christophe 'DrakeXorn' Bernard
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: server
+  icon: lock
   color: blue
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
+  server:
+    description: Host name or IP address of the VPN server.
     required: true
-    default: '1000'
+  port:
+    description: Port of the VPN server (e.g. 443, 992, 1194 or 5555).
+    required: true
+    default: "443"
+  hub:
+    description: Name of the Virtual Hub to connect to.
+    required: false
+    default: DEFAULT
+  authentication_method:
+    description: One of "password", "radius", "certificate" or "anonymous".
+    required: false
+    default: password
+  username:
+    description: Username. Required for every method except "anonymous".
+    required: false
+  password:
+    description: Password, for the "password" and "radius" methods. Pass it from a secret.
+    required: false
+  client_cert:
+    description: PEM-encoded client certificate, for the "certificate" method.
+    required: false
+  client_key:
+    description: PEM-encoded client private key, for the "certificate" method. Pass it from a secret.
+    required: false
+  server_ca:
+    description: PEM-encoded CA certificate used to verify the server. When empty, the server certificate is not verified.
+    required: false
+  send_all_traffic:
+    description: Route all runner traffic through the VPN (true/false). When false, only the VPN subnet goes through it.
+    required: false
+    default: "false"
+  timeout:
+    description: Seconds to wait for the VPN session to be established.
+    required: false
+    default: "30"
 
-# Define your outputs here.
 outputs:
-  time:
-    description: Your output description here
+  interface:
+    description: Name of the VPN network interface (vpn_vpn).
+  ip:
+    description: IPv4 address assigned to the runner on the VPN.
 
 runs:
   using: node24
   main: dist/index.js
+  post: dist/index.js

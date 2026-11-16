@@ -26,28 +26,33 @@
     "node": ">=24"
   },
   "scripts": {
-    "bundle": "yarn format && yarn package",
+    "bundle": "yarn format:write && yarn package",
     "ci-test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 yarn exec jest",
     "coverage": "yarn exec make-coverage-badge --output-path ./badges/coverage.svg",
     "format:check": "yarn exec biome format src",
     "format:write": "yarn exec biome format --write src",
     "lint:check": "yarn exec biome lint src",
     "lint:write": "yarn exec biome lint --write src",
-    "package": "yarn dlx rimraf ./dist && yarn dlx rollup --config rollup.config.js",
+    "package": "rm -rf dist && rollup --config rollup.config.js",
     "package:watch": "yarn package -- --watch",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx jest",
-    "all": "yarn format:check && yarn lint:check && yarn test && yarn coverage && yarn package"
+    "test": "yarn ci-test",
+    "all": "yarn format:check && yarn lint:check && yarn typecheck && yarn test && yarn coverage && yarn package",
+    "typecheck": "tsc -p ."
   },
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^3.0.1"
+    "@actions/core": "^3.0.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.6",
     "@github/local-action": "^7.0.1",
     "@jest/globals": "^30.5.2",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.1",
+    "@rollup/plugin-swc": "^0.4.1",
+    "@swc/core": "^1.16.22",
+    "@swc/jest": "^0.2.39",
     "@types/node": "^26.6.6",
     "jest": "^30.5.2",
     "make-coverage-badge": "^1.2.0",
