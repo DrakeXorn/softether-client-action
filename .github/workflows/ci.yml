@@ -82,6 +82,9 @@ jobs:
       - name: Dump SoftEther Logs
         if: failure()
         run: |
-          docker logs ${{ job.services.vpnserver.id }} 2>&1 | tail -n 100 || true
-          docker exec ${{ job.services.vpnserver.id }} sh -c "find / -path '*_log/*.log' -exec tail -n 100 {} +" || true
-          sudo find /usr /var -path '*client_log/*.log' -exec tail -n 100 {} + || true
+          # The first client attempt says why the session drops; later ones just retry.
+          sudo find /usr /var -path '*client_log/*.log' -exec head -n 40 {} + || true
+          sudo vpncmd localhost /CLIENT /CMD AccountStatusGet gha || true
+          sudo journalctl -u softether-vpnclient --no-pager | tail -n 30 || true
+          ip -br link; ip -4 route
+          sudo dmesg | tail -n 30
