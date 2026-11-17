@@ -1,0 +1,2 @@
+[codespell]
+skip = .idea,.licenses,.vscode,.yarn,.github,.devcontainer
