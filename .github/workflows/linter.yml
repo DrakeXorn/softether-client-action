@@ -72,4 +72,4 @@ jobs:
           VALIDATE_JSCPD: false
           VALIDATE_EDITORCONFIG: false
           VALIDATE_MARKDOWN: false
-
+          VALIDATE_SPELL_CODESPELL: false

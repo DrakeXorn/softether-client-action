@@ -8,7 +8,7 @@ branding:
 
 inputs:
   server:
-    description: Host name or IP address of the VPN server.
+    description: Hostname or IP address of the VPN server.
     required: true
   port:
     description: Port of the VPN server (e.g. 443, 992, 1194 or 5555).

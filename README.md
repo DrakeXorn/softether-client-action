@@ -45,7 +45,7 @@ steps:
 
 | Name                    | Default    | Description                                                                                                                                |
 | ----------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `server`                | (required) | Host name or IP of the VPN server.                                                                                                         |
+| `server`                | (required) | Hostname or IP of the VPN server.                                                                                                         |
 | `port`                  | `443`      | Server port.                                                                                                                               |
 | `hub`                   | `DEFAULT`  | Virtual Hub name.                                                                                                                          |
 | `authentication_method` | `password` | `password`, `radius`, `certificate` or `anonymous`.                                                                                        |
