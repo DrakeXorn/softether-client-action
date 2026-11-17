@@ -1,65 +1,65 @@
 {
-  "name": "softether-client-action",
-  "description": "A SoftEther VPN client that allows one to connect to a remote source",
-  "packageManager": "yarn@4.18.1",
-  "version": "1.0.0",
-  "author": "Christophe 'DrakeXorn' Bernard",
-  "type": "module",
-  "private": true,
-  "homepage": "https://github.com/drakexorn/softether-client-action#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/drakexorn/softether-client-action.git"
-  },
-  "bugs": {
-    "url": "https://github.com/drakexorn/softether-client-action/issues"
-  },
-  "keywords": [
-    "softether",
-    "vpn",
-    "actions"
-  ],
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "engines": {
-    "node": ">=24"
-  },
-  "scripts": {
-    "bundle": "yarn format:write && yarn package",
-    "ci-test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 yarn exec jest",
-    "coverage": "yarn exec make-coverage-badge --output-path ./badges/coverage.svg",
-    "format:check": "yarn exec biome format src",
-    "format:write": "yarn exec biome format --write src",
-    "lint:check": "yarn exec biome lint src",
-    "lint:write": "yarn exec biome lint --write src",
-    "package": "rm -rf dist && rollup --config rollup.config.js",
-    "package:watch": "yarn package -- --watch",
-    "test": "yarn ci-test",
-    "all": "yarn format:check && yarn lint:check && yarn typecheck && yarn test && yarn coverage && yarn package",
-    "typecheck": "tsc -p ."
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^3.0.1",
-    "zod": "^4.6.7"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.6.6",
-    "@github/local-action": "^7.0.1",
-    "@jest/globals": "^30.5.2",
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-swc": "^0.4.1",
-    "@swc/core": "^1.16.22",
-    "@swc/jest": "^0.2.39",
-    "@types/node": "^26.6.6",
-    "jest": "^30.5.2",
-    "make-coverage-badge": "^1.2.0",
-    "rollup": "^4.68.2",
-    "typescript": "^7.0.2"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "*"
-  }
+	"name": "softether-client-action",
+	"description": "A SoftEther VPN client that allows one to connect to a remote source",
+	"packageManager": "yarn@4.18.1",
+	"version": "1.0.0",
+	"author": "Christophe 'DrakeXorn' Bernard",
+	"type": "module",
+	"private": true,
+	"homepage": "https://github.com/drakexorn/softether-client-action#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/drakexorn/softether-client-action.git"
+	},
+	"bugs": {
+		"url": "https://github.com/drakexorn/softether-client-action/issues"
+	},
+	"keywords": [
+		"softether",
+		"vpn",
+		"actions"
+	],
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"bundle": "yarn format:write && yarn package",
+		"ci-test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 yarn exec jest",
+		"coverage": "yarn exec make-coverage-badge --output-path ./badges/coverage.svg",
+		"format:check": "yarn exec biome format src",
+		"format:write": "yarn exec biome format --write src",
+		"lint:check": "yarn exec biome lint src",
+		"lint:write": "yarn exec biome lint --write src",
+		"package": "rm -rf dist && rollup --config rollup.config.js",
+		"package:watch": "yarn package -- --watch",
+		"test": "yarn ci-test",
+		"all": "yarn format:check && yarn lint:check && yarn typecheck && yarn test && yarn coverage && yarn package",
+		"typecheck": "tsc -p ."
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@actions/core": "^3.0.1",
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.6.6",
+		"@github/local-action": "^7.0.1",
+		"@jest/globals": "^30.5.2",
+		"@rollup/plugin-commonjs": "^29.0.3",
+		"@rollup/plugin-node-resolve": "^16.0.3",
+		"@rollup/plugin-swc": "^0.4.1",
+		"@swc/core": "^1.16.22",
+		"@swc/jest": "^0.2.39",
+		"@types/node": "^26.6.6",
+		"jest": "^30.5.2",
+		"make-coverage-badge": "^1.2.0",
+		"rollup": "^4.68.2",
+		"typescript": "^7.0.2"
+	},
+	"optionalDependencies": {
+		"@rollup/rollup-linux-x64-gnu": "*"
+	}
 }

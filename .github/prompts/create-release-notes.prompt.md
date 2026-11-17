@@ -1,4 +1,5 @@
 ---
+
 mode: agent
 tools: ['changes', 'codebase', 'github']
 description: Generate release notes for updates to the repository.
