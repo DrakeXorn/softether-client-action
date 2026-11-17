@@ -30363,10 +30363,14 @@ const NIC = "vpn";
         throw new Error(`vpncmd ${args[0]} failed${out ? `:\n${out}` : ""}`);
     }
 }
-const isConnected = ()=>/Session Established/i.test(vpncmd([
+/** True once the session is up; otherwise throws the current status, so a timeout reports why. */ function isConnected() {
+    const out = vpncmd([
         "AccountStatusGet",
         ACCOUNT
-    ]));
+    ]);
+    if (/Session Established/i.test(out)) return true;
+    throw new Error(out.match(/Session Status\s*\|(.+)/)?.[1]?.trim() ?? out.trim());
+}
 /** The vpncmd argument lists that configure and start the connection, in order. */ function buildCommands(i, files) {
     const cmds = [
         [

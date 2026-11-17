@@ -24,8 +24,14 @@ export function vpncmd(args: string[]): string {
 	}
 }
 
-export const isConnected = (): boolean =>
-	/Session Established/i.test(vpncmd(["AccountStatusGet", ACCOUNT]));
+/** True once the session is up; otherwise throws the current status, so a timeout reports why. */
+export function isConnected(): boolean {
+	const out = vpncmd(["AccountStatusGet", ACCOUNT]);
+	if (/Session Established/i.test(out)) return true;
+	throw new Error(
+		out.match(/Session Status\s*\|(.+)/)?.[1]?.trim() ?? out.trim(),
+	);
+}
 
 /** The vpncmd argument lists that configure and start the connection, in order. */
 export function buildCommands(i: Inputs, files: PemFiles): string[][] {
