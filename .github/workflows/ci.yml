@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
           cache: yarn
@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # A fresh server has an empty admin password and a DEFAULT hub. SecureNAT
       # gives the hub a DHCP server and a virtual host at 192.168.30.1.
@@ -78,3 +78,10 @@ jobs:
         run: |
           echo "Connected on ${{ steps.vpn.outputs.interface }} as ${{ steps.vpn.outputs.ip }}"
           ping -c 3 192.168.30.1
+
+      - name: Dump SoftEther Logs
+        if: failure()
+        run: |
+          docker logs ${{ job.services.vpnserver.id }} 2>&1 | tail -n 100 || true
+          docker exec ${{ job.services.vpnserver.id }} sh -c "find / -path '*_log/*.log' -exec tail -n 100 {} +" || true
+          sudo find /usr /var -path '*client_log/*.log' -exec tail -n 100 {} + || true
