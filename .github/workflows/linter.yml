@@ -70,3 +70,6 @@ jobs:
           VALIDATE_JSONC: false
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_JSCPD: false
+          VALIDATE_EDITORCONFIG: false
+          VALIDATE_MARKDOWN: false
+
